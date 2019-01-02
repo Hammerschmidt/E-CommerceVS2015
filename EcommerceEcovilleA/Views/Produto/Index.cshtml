@@ -1,0 +1,58 @@
+﻿@using EcommerceEcovilleA.Models
+@model List<Produto>
+
+@{
+    DateTime data = ViewBag.Data;
+}
+<h2>Gerenciamento de Produtos</h2>
+
+@*Linguagem Razor*@
+@*Link do HTML
+    <a href="#">Cadastrar Produto</a>*@
+
+@Html.ActionLink("Cadastrar Produto", "CadastrarProduto", "Produto")
+
+<div>
+    <table style="margin-top:30px" class="table table-hover table-striped">
+        <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Tamanho</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (Produto produtoCadastrado in Model)
+            {
+            <tr>
+                <td>
+                    <img src="~/Imagens/@produtoCadastrado.Imagem"
+                         alt="@produtoCadastrado.Descricao" 
+                         style="width:150px; height: 100px"/>
+                </td>
+                <td>@produtoCadastrado.Nome</td>
+                <td>@produtoCadastrado.Descricao</td>
+                <td>@produtoCadastrado.Categoria.Nome</td>
+                <td>@produtoCadastrado.Quantidade</td>
+                <td>@produtoCadastrado.Preco</td>
+                <!--Tamanho-->
+                <td>@produtoCadastrado.Tamanho</td>
+                <td>
+                    @Html.ActionLink("Remover", "RemoverProduto",
+                            "Produto", new { id = produtoCadastrado.ProdutoId },
+                            null)
+                </td>
+                <td>
+                    @Html.ActionLink("Alterar", "AlterarProduto",
+                            "Produto", new { id = produtoCadastrado.ProdutoId }, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    Dados atualizados às: <b>@data</b>
+</p>

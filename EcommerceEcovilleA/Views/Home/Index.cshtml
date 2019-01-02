@@ -1,0 +1,44 @@
+﻿@using EcommerceEcovilleA.Models
+@using EcommerceEcovilleA.Utils
+@model List<Produto>
+
+@{
+    ViewBag.Title = "Index";
+    List<Categoria> categorias = ViewBag.Categorias;
+    var erro = ViewBag.Erro != null ? ViewBag.Erro as Erros : new Erros { Erro = false, Data = "" };
+}
+@if (erro.Erro)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Erro!</strong> @erro.Data
+    </div>
+}
+<ul class="nav nav-tab" style="margin-bottom:30px; margin-top:30px">
+    @foreach (Categoria item in categorias)
+    {
+        <li class="nav-item">
+            @Html.ActionLink(item.Nome, "Index", "Home",
+                                         new { id = item.CategoriaId },
+                                         new { @class = "nav-link" })
+        </li>
+    }
+</ul>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-3" style="text-align:center;margin-bottom:30px">
+            <img src="~/Imagens/@item.Imagem"
+                 style="width:200px;height:150px; margin-bottom:15px"
+                 class="img-thumbnail"
+                 alt="@item.Descricao" /><br />
+            @Html.ActionLink(item.Nome, "Detalhes", "Home",
+                                         new { id = item.ProdutoId }, null)<br />
+            <b>Preço: </b> @item.Preco.ToString("C2")<br />
+            @Html.ActionLink("Adicionar", "AdicionarAoCarrinho",
+                                         "Home", new { id = item.ProdutoId },
+                                         new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿@using EcommerceEcovilleA.Models
+@model IEnumerable<Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Criar Novo", "CadastrarUsuario")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Senha)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Endereco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Senha)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,35 @@
+﻿@model EcommerceEcovilleA.Models.Venda
+
+@{
+    ViewBag.Title = "Detalhes da Venda";
+}
+
+<h2>Detalhes da Venda</h2>
+
+<div>
+    <h4>Venda</h4>
+
+    <hr />
+    <p>Cep da Entrega:</p>
+    <dt>@Model.Cep</dt>
+    <br />
+    @foreach (var itens in Model.Items)
+    {
+        <p>Nome do Produto:</p>
+        <dt>
+            @Html.DisplayFor(modelItem => itens.Produto.Nome)
+        </dt>
+        <br />
+        <p>Valor:</p>
+        <dt>
+            @Html.DisplayFor(modelItem => itens.Produto.Preco)
+        </dt>
+    }
+    <br />
+    <p>Total da Compra:</p>
+    <dt>@ViewBag.Valor</dt>
+    <br />
+</div>
+<p>
+    @Html.ActionLink("Voltar", "Index")
+</p>

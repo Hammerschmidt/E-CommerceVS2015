@@ -1,0 +1,38 @@
+﻿@model IEnumerable<EcommerceEcovilleA.Models.Frete>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Fretes</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Cadastro")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnidadeFederativa.Descricao)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnidadeFederativa.Descricao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.FreteId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FreteId })
+            </td>
+        </tr>
+    }
+</table>

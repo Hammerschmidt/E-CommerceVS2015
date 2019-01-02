@@ -1,0 +1,62 @@
+﻿@model IEnumerable<EcommerceEcovilleA.Models.Venda>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Impressão da Compra</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            VendaId
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Endereço
+        </th>
+        <th>
+            Cep
+        </th>
+        <th>
+            Frete
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendaId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logradouro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Frete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+
+        <td>
+            @Html.ActionLink("Detalhes", "DetalhesVenda", new { id = item.VendaId })
+        </td>
+
+    </tr>
+}
+
+</table>

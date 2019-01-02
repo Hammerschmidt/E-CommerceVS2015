@@ -1,0 +1,44 @@
+﻿@using EcommerceEcovilleA.Models
+@model List<ItemVenda>
+@{
+    double total = ViewBag.Total;
+}
+
+<h2>Carrinho de Compras</h2>
+@Html.ValidationSummary()
+<table class="table table-hover table-striped" style="margin-bottom:30px">
+    <tr>
+        <th>Imagem</th>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th>Subtotal</th>
+        <th></th>
+    </tr>
+
+    @foreach (ItemVenda item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Imagens/@item.Produto.Imagem"
+                     alt="Imagem do produto"
+                     style="width:100px" />
+            </td>
+            <td>@item.Produto.Nome</td>
+            <td style="box-sizing: border-box">
+                @item.Quantidade
+            </td>
+            <td>@item.Preco.ToString("C2")</td>
+            @{
+                double subtotal = item.Quantidade * item.Preco;
+            }
+            <td>@subtotal.ToString("C2")</td>
+            <td>@Html.ActionLink("Remover", "RemoverItem", "Home", new { id = item.ItemVendaId }, null)</td>
+        </tr>
+    }
+</table>
+
+<hr />
+<a class="btn btn-primary" href="/Venda/Orcamento">
+    FINALIZAR COMPRA
+</a>
